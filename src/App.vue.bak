@@ -8,33 +8,29 @@
           <n-text type="warning">
             PINIA-REF
             <br>
+            <!--    @ts-ignore        -->
             <span style="font-size: 20px">{{languageData[language]['title']}}</span>
           </n-text>
         </n-h1>
 
         <n-h1 prefix="bar">
           <n-text type="primary">
+            <!--    @ts-ignore        -->
             {{languageData[language][language]}}
           </n-text>
         </n-h1>
 
         <n-h1 prefix="bar" type="info">
           <n-text type="info">
+            <!--    @ts-ignore        -->
             {{languageData[language][theme + 'Theme']}}
           </n-text>
         </n-h1>
 
-        <p>解构导出</p>
         <n-space>
           <n-button type="primary" size="large" @click="theme=='dark'?theme='light':theme='dark'">切换主题</n-button>
           <n-button type="info" size="large" @click="language=='cn'?language='en':language='cn'">切换语言</n-button>
-          <n-button type="warning" size="large" @click="reload()">{{ languageData[language]['re'] }}</n-button>
-        </n-space>
-
-        <p>正常导出操作（非解构）</p>
-        <n-space>
-          <n-button type="primary" size="large" @click="data.theme=='dark'?data.theme='light':data.theme='dark'">切换主题</n-button>
-          <n-button type="info" size="large" @click="data.language=='cn'?data.language='en':data.language='cn'">切换语言</n-button>
+          <!--    @ts-ignore        -->
           <n-button type="warning" size="large" @click="reload()">{{ languageData[language]['re'] }}</n-button>
         </n-space>
       </n-card>
@@ -44,11 +40,7 @@
 
 <script setup lang="ts">
 import { darkTheme } from 'naive-ui'
-import Config from "./pinia-ref/use";
-import { structure } from "./pinia-ref";
-
-let {theme, language} = structure(Config)
-let data = Config()
+import { theme, language } from "./use";
 
 // 刷新页面
 const reload = () => {
@@ -56,13 +48,13 @@ const reload = () => {
 }
 
 // 主题配置文件按
-const themeData = {
+const themeData:any = {
   dark: darkTheme,
   light: null
 }
 
 // 语言
-const languageData = {
+const languageData:any = {
   cn: {
     switchTheme: '切换主题',
     switchLanguage: '切换语言',
@@ -90,10 +82,10 @@ const languageData = {
 <style scoped>
 .wrap {
   width: 400px;
-  /*height: 400px;*/
+  height: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-60%)
+  transform: translate(-50%,-50%)
 }
 </style>
